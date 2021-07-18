@@ -9,6 +9,21 @@
         <dist:delivery>
             <dist:install-time />
         </dist:delivery>
+
         <dist:fusing dist:include="true" />
     </dist:module>
+
+    <application>
+        <activity android:name=".presentation.FavoriteActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="githubuser"
+                    android:host="favorite"
+                    />
+            </intent-filter>
+
+        </activity>
+    </application>
+
 </manifest>

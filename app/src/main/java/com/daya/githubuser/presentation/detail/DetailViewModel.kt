@@ -45,42 +45,7 @@ private val getCurrentDetailFavoriteUserUseCase: GetCurrentDetailFavoriteUserUse
                     val netBio = getDetailBioUseCase(bio.username)
                     emit(netBio)
                 }
-                else -> {
-                    //TODO move out follower/Following from general bio for easier implementation
-                    val listFollowers  = this@DetailViewModel.getListFollowersUseCase(bio.username)
-                    val listFollowing = this@DetailViewModel.getListFollowingUseCase(bio.username)
-
-                    var errorMessage : String? = ""
-                    val actualListFollowers = when (listFollowers) {
-                        is Resource.Success -> {
-                            listFollowers.data
-                        }
-                        else -> {
-                            errorMessage = (listFollowers as Resource.Error).exceptionMessage
-                            null
-                        }
-                    }
-
-                    val actualListFollowing = when (listFollowing) {
-                        is Resource.Success -> {
-                            listFollowing.data
-                        }
-                        else -> {
-                            errorMessage = (listFollowing as Resource.Error).exceptionMessage
-                            null
-                        }
-                    }
-
-                    if (actualListFollowers == null || actualListFollowing == null) {
-                        emit(Resource.Error(errorMessage))
-                        return@liveData
-                    }
-                    bio.followers = actualListFollowers
-                    bio.followings = actualListFollowing
-
-                    val resBio = bio.let { Resource.Success(it) }
-                    emit(resBio)
-                }
+                else -> emit(Resource.Success(bio))
             }
         }
     }

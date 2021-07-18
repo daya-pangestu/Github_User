@@ -86,7 +86,6 @@ class FavoriteFragment : Fragment() {
 
     }
 
-
     override fun onDestroy() {
         _binding = null
         super.onDestroy()

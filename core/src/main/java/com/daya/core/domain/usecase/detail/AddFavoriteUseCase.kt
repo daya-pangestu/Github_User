@@ -24,9 +24,6 @@ constructor(
         val nonNullBio = parameters!!
         val bioEntity =  nonNullBio.toBioEntity()
 
-        val followers = nonNullBio.toFollowersEntity()
-        val following = nonNullBio.toFollowingEntity()
-
         return coroutineScope {
             val rowId = async {
                  repo.addUserFavorite(bioEntity)

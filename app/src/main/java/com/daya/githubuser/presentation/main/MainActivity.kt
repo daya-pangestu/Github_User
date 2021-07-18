@@ -1,6 +1,7 @@
 package com.daya.githubuser.presentation.main
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -96,10 +97,9 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        binding.extendedFAB.apply {
-            setOnClickListener {
-                toast("fab cliked")
-            }
+        binding.extendedFAB.setOnClickListener {
+            val uri = Uri.parse("githubuser://favorite")
+            startActivity(Intent(Intent.ACTION_VIEW,uri))
         }
     }
 

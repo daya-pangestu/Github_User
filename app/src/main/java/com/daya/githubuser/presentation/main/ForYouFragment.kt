@@ -31,8 +31,6 @@ class ForYouFragment : Fragment() {
 
     private val mainViewModel by activityViewModels<MainViewModel>()
 
-    private lateinit var skeleton : Skeleton
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,57 +39,6 @@ class ForYouFragment : Fragment() {
         _binding = FragmentForYouBinding.inflate(inflater, container, false)
         return binding.root
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val userAdapter = UserProfileAdapter{ bio ->
-            val intentToDetail = Intent(activity, DetailActivity::class.java).also {
-                it.putExtra(DetailActivity.KEY_USER_EXTRA, bio)
-            }
-            startActivity(intentToDetail)
-        }
-
-        binding.apply {
-            rvUsers.adapter = userAdapter
-            rvUsers.layoutManager = LinearLayoutManager(context)
-            rvUsers.setHasFixedSize(true)
-            rvUsers.addItemDecoration(
-                DividerItemDecoration(
-                    context,
-                    DividerItemDecoration.VERTICAL
-                )
-            )
-        }
-
-        mainViewModel.getListBioLiveData.observe(viewLifecycleOwner, {
-            when (it) {
-                is Resource.Loading -> {
-                    if (::skeleton.isInitialized) {
-                        skeleton.showSkeleton()
-                    } else {
-                        skeleton = binding.rvUsers.applySkeleton(R.layout.item_user).apply {
-                            showSkeleton()
-                        }
-                    }
-                }
-                is Resource.Success -> {
-                    lifecycleScope.launch {
-                        delay(500)
-                        if (::skeleton.isInitialized) skeleton.showOriginal()
-                        userAdapter.submitList(it.data)
-                    }
-                }
-                is Resource.Error -> {
-                    if (::skeleton.isInitialized) skeleton.showOriginal()
-                    context?.toast(it.exceptionMessage.toString(), Toast.LENGTH_SHORT)
-                }
-            }
-        })
-
-    }
-
-
 
     override fun onDestroy() {
         _binding = null

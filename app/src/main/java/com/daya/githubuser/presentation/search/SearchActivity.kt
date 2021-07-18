@@ -91,7 +91,7 @@ class SearchActivity : AppCompatActivity() {
                     if (::skeleton.isInitialized) {
                         skeleton.showSkeleton()
                     } else {
-                        skeleton = binding.rvSuggestion.applySkeleton(R.layout.item_search).apply {
+                        skeleton = binding.rvSuggestion.applySkeleton(R.layout.item_search,10).apply {
                             showSkeleton()
                         }
                     }

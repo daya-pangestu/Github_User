@@ -31,7 +31,6 @@ constructor(
         private val githubUserApiService: GithubUserApiService,
 ) : DetailBioDataSource {
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     override suspend fun getDetailBio(userName : String): GeneralBio = suspendCancellableCoroutine { continuation ->
         val client = githubUserApiService.getDetailUsers(userName)
 
@@ -67,7 +66,6 @@ constructor(
        }
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     override suspend fun getListFollowers(userName: String): List<FollowersFollowing> = suspendCancellableCoroutine { continuation ->
         val client = githubUserApiService.getUserFollowers(userName)
 
@@ -103,7 +101,6 @@ constructor(
         }
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     override suspend fun getListFollowing(userName: String): List<FollowersFollowing> = suspendCancellableCoroutine { continuation ->
         val client = githubUserApiService.getUserFollowing(userName)
 

@@ -33,7 +33,6 @@ class FavoriteActivity : AppCompatActivity() {
         factory
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         DaggerFavoriteComponent.builder()
             .context(this)

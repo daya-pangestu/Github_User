@@ -7,9 +7,6 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
-    <permission android:name="com.daya.githubusertt.READ_DATABASE" android:protectionLevel="normal"/>
-    <permission android:name="com.daya.githubusertt.WRITE_DATABASE" android:protectionLevel="normal"/>
-
     <application
         android:name=".GithubUserApp"
         android:allowBackup="true"
@@ -19,15 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GithubUser"
         tools:ignore="AllowBackup">
-        <provider
-            android:name=".presentation.contentprovider.GitUserContentProvider"
-            android:authorities="com.daya.githubusertt"
-            android:enabled="true"
-            android:exported="true"
-            android:readPermission="com.daya.githubusertt.READ_DATABASE"
-            android:writePermission="com.daya.githubusertt.WRITE_DATABASE"
-            />
-
         <activity
             android:name=".presentation.settings.SettingsActivity"
             android:label="@string/title_activity_settings" />

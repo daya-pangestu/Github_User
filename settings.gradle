@@ -1,4 +1,4 @@
-include ':favorite'
 include ':app'
 rootProject.name = "Github User"
 include ':core'
+include ':favorite'

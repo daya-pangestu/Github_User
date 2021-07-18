@@ -26,7 +26,7 @@ abstract class ProfileDao {
  abstract suspend fun insertFollowing(followings: List<FollowingEntity>)
 
  @Query("DELETE FROM bioentity WHERE bio_user_name = :userName")
- abstract suspend fun deleteFaforiteUserBio(userName: String)
+ abstract suspend fun deleteFaforiteUserBio(userName: String) //TODO make sure followers and following got deleted
 
  @Transaction
  @Query("SELECT * FROM bioentity WHERE bio_user_name = :userName")

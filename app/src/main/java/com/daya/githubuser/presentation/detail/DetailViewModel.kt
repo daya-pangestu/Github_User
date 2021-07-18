@@ -2,6 +2,7 @@ package com.daya.githubuser.presentation.detail
 
 import androidx.lifecycle.*
 import com.daya.core.data.Resource
+import com.daya.core.domain.model.FollowersFollowing
 import com.daya.core.domain.model.GeneralBio
 import com.daya.core.domain.usecase.detail.*
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -9,6 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
@@ -44,6 +46,7 @@ private val getCurrentDetailFavoriteUserUseCase: GetCurrentDetailFavoriteUserUse
                     emit(netBio)
                 }
                 else -> {
+                    //TODO move out follower/Following from general bio for easier implementation
                     val listFollowers  = this@DetailViewModel.getListFollowersUseCase(bio.username)
                     val listFollowing = this@DetailViewModel.getListFollowingUseCase(bio.username)
 
@@ -87,11 +90,7 @@ private val getCurrentDetailFavoriteUserUseCase: GetCurrentDetailFavoriteUserUse
             name.isEmpty()
                     && company.isEmpty()
                     && location.isEmpty()
-                    && followingCount == 0
-                    && followerCount == 0
                     && repoCount == 0
-                    && followers.isEmpty()
-                    && followings.isEmpty()
         } else true
     }
 

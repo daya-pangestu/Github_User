@@ -51,7 +51,7 @@ constructor(
                         )
                     continuation.resume(generalBio)
                 } else {
-                    continuation.resumeWithException(NoSuchElementException("response.body is null, ${response.message()}"))
+                    continuation.resumeWithException(NoSuchElementException("${response.errorBody()?.string()}"))
                 }
             }
 
@@ -87,7 +87,7 @@ constructor(
 
                     continuation.resume(listFollowers)
                 } else {
-                    continuation.resumeWithException(Resources.NotFoundException("response.body is null, ${response.message()}"))
+                    continuation.resumeWithException(Resources.NotFoundException("${response.errorBody()?.string()}"))
                 }
             }
 
@@ -123,7 +123,7 @@ constructor(
                     continuation.resume(listFollowers)
 
                 } else {
-                    continuation.resumeWithException(Resources.NotFoundException(("response.body is null, ${response.message()}")))
+                    continuation.resumeWithException(Resources.NotFoundException(("${response.errorBody()?.string()}")))
                 }
             }
 

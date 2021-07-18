@@ -57,11 +57,13 @@ interface GithubUserApiService {
 
     @GET("/users/{username}/followers")
     fun getUserFollowers(
-        @Path("username") username : String
+        @Path("username") username : String,
+        @Path("per_page") per_page : Int = 4 //limit result from api, to avoid rate limit
     ) : Call<List<NetWorkBio>>
 
     @GET("/users/{username}/following")
     fun getUserFollowing(
-        @Path("username") username : String
+        @Path("username") username : String,
+        @Path("per_page") per_page : Int = 4
     ) : Call<List<NetWorkBio>>
 }

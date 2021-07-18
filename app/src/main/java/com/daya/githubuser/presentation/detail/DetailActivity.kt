@@ -13,13 +13,10 @@ import com.daya.githubuser.R
 import com.daya.core.data.Resource
 import com.daya.core.domain.model.GeneralBio
 import com.daya.githubuser.databinding.ActivityDetailBinding
-import com.daya.githubuser.presentation.detail.follow.FollowFragmentStateAdapter
 import com.daya.core.utils.avatarForMainApp
-import com.daya.core.utils.capitalized
 import com.daya.core.utils.isValidUrl
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.createSkeleton
-import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -58,15 +55,14 @@ class DetailActivity : AppCompatActivity() {
                 is Resource.Success -> {
                     lifecycleScope.launch {
                         delay(500)
-                        //skeleton.hide()
+                        skeleton.showOriginal()
                         val nonNullBio = resBio.data
-                        detailViewModel.sculptingBio(nonNullBio)// re save it, nonNullBio for addToFavorite
                         bindLayout(nonNullBio)
                         invalidateOptionsMenu()
                     }
                 }
                 is Resource.Error -> {
-                    //skeleton.hide()
+                    skeleton.showOriginal()
                     toast(resBio.exceptionMessage.toString(), Toast.LENGTH_SHORT)
                 }
             }
@@ -92,20 +88,6 @@ class DetailActivity : AppCompatActivity() {
         binding.tvFollowingCount.text = generalBio.followingCount.toString()
         binding.tvRepoCount.text = generalBio.repoCount.toString()
 
-        binding.pager.adapter = FollowFragmentStateAdapter(
-            this@DetailActivity,
-            followersUrl = generalBio.followersUrl,
-            followingUrl = generalBio.followingUrl,
-            listFollowers = generalBio.followers,
-            listFollowings = generalBio.followings
-        )
-
-        TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->
-            tab.text = when (position) {
-                0 -> getString(R.string.followers).capitalized()
-                else -> getString(R.string.followings).capitalized()
-            }
-        }.attach()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

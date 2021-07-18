@@ -31,11 +31,6 @@ constructor(
             val rowId = async {
                  repo.addUserFavorite(bioEntity)
             }
-            launch {
-                repo.insertfollowers(followers)
-                repo.insertFollowing(following)
-            }.join()
-
             rowId.await()
         }
 

@@ -2,6 +2,7 @@ package com.daya.githubuser.favorite.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -22,9 +23,9 @@ import javax.inject.Inject
 
 class FavoriteActivity : AppCompatActivity() {
 
-    lateinit var binding : ActivityFavoriteBinding
+    private lateinit var binding : ActivityFavoriteBinding
 
-    lateinit var skeleton : Skeleton
+    private lateinit var skeleton : Skeleton
 
     @Inject
     lateinit var factory : ViewModelFactory
@@ -46,7 +47,7 @@ class FavoriteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityFavoriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val userAdapter = UserProfileAdapter()
 
         binding.rvUsersFav.apply {
@@ -61,7 +62,7 @@ class FavoriteActivity : AppCompatActivity() {
             )
         }
 
-        favoriteViewModel.getlistfavoriteLiveData.observe(this, {
+        favoriteViewModel.getListFavoriteLiveData.observe(this, {
             when (it) {
                 is Resource.Loading -> {
                     if (::skeleton.isInitialized) {
@@ -85,5 +86,20 @@ class FavoriteActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                true
+            }
+            else ->super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
     }
 }

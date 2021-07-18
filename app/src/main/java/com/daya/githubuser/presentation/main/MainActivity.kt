@@ -13,18 +13,15 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.*
-import ca.allanwang.kau.searchview.bindSearchView
-import ca.allanwang.kau.utils.toast
 import com.daya.core.data.Resource
+import com.daya.core.utils.toast
 import com.daya.githubuser.R
 import com.daya.githubuser.databinding.ActivityMainBinding
-import com.daya.githubuser.presentation.settings.SettingsActivity
-import com.daya.githubuser.presentation.search.SearchActivity
-import com.daya.core.utils.capitalized
 import com.daya.githubuser.presentation.detail.DetailActivity
+import com.daya.githubuser.presentation.search.SearchActivity
+import com.daya.githubuser.presentation.settings.SettingsActivity
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
-import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -92,7 +89,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 is Resource.Error -> {
                     if (::skeleton.isInitialized) skeleton.showOriginal()
-                    toast(it.exceptionMessage.toString(), Toast.LENGTH_SHORT)
+                    toast(it.exceptionMessage.toString())
                 }
             }
         })

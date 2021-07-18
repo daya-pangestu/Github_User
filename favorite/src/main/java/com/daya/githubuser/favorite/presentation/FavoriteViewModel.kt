@@ -24,5 +24,5 @@ constructor(
         }
     }
 
-    val getlistfavoriteLiveData = _getListFavoriteLiveData
+    val getListFavoriteLiveData = _getListFavoriteLiveData
 }

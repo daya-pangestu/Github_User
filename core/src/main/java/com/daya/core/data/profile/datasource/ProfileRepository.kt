@@ -36,13 +36,8 @@ constructor(
 
      override suspend fun getDetailBioFromNetwork(userName: String): GeneralBio {
         val flowBio = networkDetailBioDataSource.getDetailBio(userName)
-        val flowListFollowers = getListFollowersFromNetwork(userName)
-        val flowListFollowing = getListFollowingFromNetwork(userName)
 
-        return flowBio.apply {
-            followers = flowListFollowers
-            followings = flowListFollowing
-        }
+        return flowBio
     }
 
      override suspend fun getListFollowersFromNetwork(userName: String): List<FollowersFollowing> {

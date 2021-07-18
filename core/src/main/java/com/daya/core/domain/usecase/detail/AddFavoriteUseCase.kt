@@ -1,16 +1,13 @@
 package com.daya.core.domain.usecase.detail
 
-import com.daya.core.domain.model.GeneralBio
 import com.daya.core.di.util.IoDispatcher
+import com.daya.core.domain.model.GeneralBio
 import com.daya.core.domain.repository.IProfileRepository
 import com.daya.core.domain.usecase.UseCase
 import com.daya.core.utils.toBioEntity
-import com.daya.core.utils.toFollowersEntity
-import com.daya.core.utils.toFollowingEntity
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class AddFavoriteUseCase

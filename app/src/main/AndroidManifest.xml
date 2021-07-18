@@ -34,8 +34,7 @@
         <receiver
             android:name=".presentation.settings.AlarmReceiver"
             android:enabled="true"
-            android:exported="true"
-            android:permission="TODO" />
+            android:exported="true"/>
     </application>
 
 </manifest>

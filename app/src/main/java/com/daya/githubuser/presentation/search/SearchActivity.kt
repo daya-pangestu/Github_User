@@ -9,15 +9,15 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ca.allanwang.kau.utils.hideKeyboard
-import ca.allanwang.kau.utils.toast
 import com.daya.githubuser.R
 import com.daya.core.data.Resource
+import com.daya.core.utils.toast
 import com.daya.githubuser.databinding.ActivitySearchBinding
 import com.daya.githubuser.presentation.detail.DetailActivity
 import com.daya.githubuser.presentation.detail.DetailActivity.Companion.KEY_USER_EXTRA
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
+import com.paulrybitskyi.persistentsearchview.utils.KeyboardManagingUtil.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -58,7 +58,11 @@ class SearchActivity : AppCompatActivity() {
             }
             searchView.setOnSearchConfirmedListener { _, query ->
                 searchViewModel.submitQuery(query)
-                hideKeyboard()
+                hideKeyboard(binding.root)
+            }
+
+            searchView.setOnLeftBtnClickListener {
+                onBackPressed()
             }
 
             searchView.setOnSearchQueryChangeListener { _, _, newQuery ->
@@ -78,7 +82,7 @@ class SearchActivity : AppCompatActivity() {
                 override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                     when (newState) {
                         RecyclerView.SCROLL_STATE_DRAGGING, RecyclerView.SCROLL_STATE_SETTLING -> {
-                            hideKeyboard()
+                            hideKeyboard(binding.root)
                         }
                     }
                 }
@@ -106,7 +110,7 @@ class SearchActivity : AppCompatActivity() {
                 is Resource.Error -> {
                     searchViewModel.submitQuery("") // clear it first, there is a bug, if text didn't change and user tap submit, it wont re-trigger search
                     if (::skeleton.isInitialized) skeleton.showOriginal()
-                    toast(it.exceptionMessage.toString(), Toast.LENGTH_SHORT)
+                    toast(it.exceptionMessage.toString())
                 }
             }
         })

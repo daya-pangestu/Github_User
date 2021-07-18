@@ -7,7 +7,6 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import ca.allanwang.kau.utils.toast
 import com.bumptech.glide.Glide
 import com.daya.githubuser.R
 import com.daya.core.data.Resource
@@ -15,6 +14,7 @@ import com.daya.core.domain.model.GeneralBio
 import com.daya.githubuser.databinding.ActivityDetailBinding
 import com.daya.core.utils.avatarForMainApp
 import com.daya.core.utils.isValidUrl
+import com.daya.core.utils.toast
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.createSkeleton
 import dagger.hilt.android.AndroidEntryPoint
@@ -63,7 +63,7 @@ class DetailActivity : AppCompatActivity() {
                 }
                 is Resource.Error -> {
                     skeleton.showOriginal()
-                    toast(resBio.exceptionMessage.toString(), Toast.LENGTH_SHORT)
+                    toast(resBio.exceptionMessage.toString())
                 }
             }
         })

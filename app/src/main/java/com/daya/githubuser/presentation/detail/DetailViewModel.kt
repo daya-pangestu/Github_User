@@ -2,7 +2,6 @@ package com.daya.githubuser.presentation.detail
 
 import androidx.lifecycle.*
 import com.daya.core.data.Resource
-import com.daya.core.domain.model.FollowersFollowing
 import com.daya.core.domain.model.GeneralBio
 import com.daya.core.domain.usecase.detail.*
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -10,7 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.lang.Exception
+import java.lang.ClassCastException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,8 +17,6 @@ class DetailViewModel
 @Inject
 constructor(
 private val getDetailBioUseCase: GetDetailBioUseCase,
-private val getListFollowersUseCase: GetListFollowersUseCase,
-private val getListFollowingUseCase: GetListFollowingUseCase,
 private val addFavoriteUseCase: AddFavoriteUseCase,
 private val removeUserFavoriteUseCase: RemoveUserFavoriteUseCase,
 private val isUserFavoriteUseCase: IsUserFavoriteUseCase,
@@ -70,7 +67,11 @@ private val getCurrentDetailFavoriteUserUseCase: GetCurrentDetailFavoriteUserUse
     }
 
     fun addUserToFavorite() = viewModelScope.launch {
-        val currentBio = _bioLiveData.value ?: return@launch
+        val currentBio = try {
+            (getDetailBioLiveData.value as Resource.Success).data
+        } catch (e: ClassCastException) {
+            return@launch
+        }
         if (currentBio.needFetch()) return@launch
 
         val rowId = withContext(Dispatchers.Default) {

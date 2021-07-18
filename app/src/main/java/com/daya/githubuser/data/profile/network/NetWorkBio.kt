@@ -1,8 +1,8 @@
 package com.daya.githubuser.data.profile.network
 
-import com.daya.githubuser.xtension.NullableStringField
+import com.daya.githubuser.utils.NullableStringField
 import com.squareup.moshi.JsonClass
-
+//this class used to carry response data from retrofit
 @JsonClass(generateAdapter = true)
 data class NetWorkBio(
     val login: String,

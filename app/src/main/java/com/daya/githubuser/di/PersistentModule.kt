@@ -3,7 +3,7 @@ package com.daya.githubuser.di
 import android.content.Context
 import androidx.room.Room
 import com.daya.githubuser.data.di.GithubUserDatabase
-import com.daya.githubuser.data.di.dao.bio.ProfileDao
+import com.daya.githubuser.data.di.ProfileDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

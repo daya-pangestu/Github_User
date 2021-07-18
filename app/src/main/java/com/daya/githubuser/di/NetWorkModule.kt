@@ -2,7 +2,7 @@ package com.daya.githubuser.di
 
 import com.daya.githubuser.data.profile.network.NetWorkBio
 import com.daya.githubuser.data.profile.network.NetWorkUsers
-import com.daya.githubuser.xtension.NullAbleStringFieldAdapter
+import com.daya.githubuser.utils.NullAbleStringFieldAdapter
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides

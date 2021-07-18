@@ -1,10 +1,13 @@
 package com.daya.githubuser.data.profile.datasource
 
 import android.content.res.Resources
-import com.daya.githubuser.data.profile.general.FollowersFollowing
-import com.daya.githubuser.data.profile.general.GeneralBio
+import com.daya.githubuser.data.di.ProfileDao
+import com.daya.githubuser.domain.model.FollowersFollowing
+import com.daya.githubuser.domain.model.GeneralBio
 import com.daya.githubuser.data.profile.network.NetWorkBio
 import com.daya.githubuser.di.GithubUserApiService
+import com.daya.githubuser.utils.toFollowersFollowing
+import com.daya.githubuser.utils.toGeneralBio
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.suspendCancellableCoroutine
 import retrofit2.Call
@@ -101,7 +104,7 @@ constructor(
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    override suspend fun getListFollowing(userName: String): List<FollowersFollowing> = suspendCancellableCoroutine {continuation ->
+    override suspend fun getListFollowing(userName: String): List<FollowersFollowing> = suspendCancellableCoroutine { continuation ->
         val client = githubUserApiService.getUserFollowing(userName)
 
         client.enqueue(object : Callback<List<NetWorkBio>> {
@@ -137,6 +140,38 @@ constructor(
             client.cancel()
         }
     }
-
-
 }
+
+
+class LocalDetailFavoriteDataSource
+@Inject
+constructor(
+    private val profileDao: ProfileDao
+) : DetailBioDataSource {
+
+    override suspend fun getDetailBio(userName: String): GeneralBio {
+        val user = profileDao.getUserFavorite(userName)
+
+        val following = profileDao.getFollowing(userName)
+
+        val followers = profileDao.getFollowers(userName)
+
+        val generalbio = user?.toGeneralBio().apply {
+            this?.followers = followers.toFollowersFollowing()
+            this?.followings = following.toFollowersFollowing()
+        }
+
+        return generalbio!!
+    }
+
+    override suspend fun getListFollowers(userName: String): List<FollowersFollowing> {
+        val followersEntity = profileDao.getFollowers(userName)
+        return followersEntity.toFollowersFollowing()
+    }
+
+    override suspend fun getListFollowing(userName: String): List<FollowersFollowing> {
+        val followingEntity = profileDao.getFollowing(userName)
+        return followingEntity.toFollowersFollowing()
+    }
+}
+

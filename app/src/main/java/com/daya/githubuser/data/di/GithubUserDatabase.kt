@@ -5,7 +5,6 @@ import androidx.room.RoomDatabase
 import com.daya.githubuser.data.di.bio.BioEntity
 import com.daya.githubuser.data.di.bio.FollowersEntity
 import com.daya.githubuser.data.di.bio.FollowingEntity
-import com.daya.githubuser.data.di.dao.bio.ProfileDao
 
 @Database(
     entities = [

@@ -2,7 +2,7 @@ package com.daya.githubuser.data.profile.network
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-
+//used only to only get outer response from retrofit, meaning its useless
 @JsonClass(generateAdapter = true)
 data class NetWorkUsers(
     val incomplete_results: Boolean,

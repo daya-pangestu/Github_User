@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="IconExtension">
+        <ignore path="src/main/res/drawable/user2.png" />
+        <ignore path="src/main/res/drawable/user2.png" />
+        <ignore path="src/main/res/drawable/user3.png" />
+        <ignore path="src/main/res/drawable/user4.png" />
+        <ignore path="src/main/res/drawable/user5.png" />
+        <ignore path="src/main/res/drawable/user6.png" />
+        <ignore path="src/main/res/drawable/user9.png" />
+    </issue>
+</lint>

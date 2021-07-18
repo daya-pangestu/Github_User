@@ -1,0 +1,8 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+        <SwitchPreferenceCompat
+            app:key="@string/key_pref_reminder"
+            app:title="Enable reminder notification"
+            app:summary="receive daily reminder to return to app"
+            />
+
+</PreferenceScreen>

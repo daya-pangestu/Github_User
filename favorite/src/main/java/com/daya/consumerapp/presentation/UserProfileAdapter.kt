@@ -1,4 +1,4 @@
-package com.daya.consumerapp.ui
+package com.daya.consumerapp.presentation
 
 import android.content.Context
 import android.text.SpannableStringBuilder
@@ -12,8 +12,8 @@ import com.bumptech.glide.Glide
 import com.daya.consumerapp.R
 import com.daya.consumerapp.data.general.GeneralBio
 import com.daya.consumerapp.databinding.ItemUserBinding
-import com.daya.consumerapp.xtension.isValidUrl
-import com.daya.consumerapp.xtension.trimLocationName
+import com.daya.consumerapp.utils.isValidUrl
+import com.daya.consumerapp.utils.trimLocationName
 
 open class UserProfileAdapter : ListAdapter<GeneralBio, UserProfileAdapter.UserProfileViewHolder>(userBioDiffUtil) {
 

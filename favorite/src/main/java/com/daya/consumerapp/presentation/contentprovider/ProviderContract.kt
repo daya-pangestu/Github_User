@@ -1,4 +1,4 @@
-package com.daya.consumerapp.contentprovider
+package com.daya.consumerapp.presentation.contentprovider
 
 import android.net.Uri
 

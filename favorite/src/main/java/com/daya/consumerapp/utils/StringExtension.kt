@@ -1,4 +1,4 @@
-package com.daya.consumerapp.xtension
+package com.daya.consumerapp.utils
 
 import android.util.Patterns
 import android.webkit.URLUtil

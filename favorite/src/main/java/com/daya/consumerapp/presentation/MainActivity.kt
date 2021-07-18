@@ -1,12 +1,10 @@
-package com.daya.consumerapp.ui
+package com.daya.consumerapp.presentation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.daya.consumerapp.R
 import com.daya.consumerapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

@@ -1,11 +1,11 @@
-package com.daya.consumerapp.ui
+package com.daya.consumerapp.presentation
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.liveData
-import com.daya.consumerapp.contentprovider.ProviderContract
+import com.daya.consumerapp.presentation.contentprovider.ProviderContract
 import com.daya.consumerapp.data.general.GeneralBio
-import com.daya.consumerapp.xtension.toListGeneralBio
+import com.daya.consumerapp.utils.toListGeneralBio
 
 class MainViewModel(private val app: Application) : AndroidViewModel(app) {
 

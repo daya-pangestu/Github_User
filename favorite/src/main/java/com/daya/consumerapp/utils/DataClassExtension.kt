@@ -1,7 +1,7 @@
-package com.daya.consumerapp.xtension
+package com.daya.consumerapp.utils
 
 import android.database.Cursor
-import com.daya.consumerapp.contentprovider.ProviderContract
+import com.daya.consumerapp.presentation.contentprovider.ProviderContract
 import com.daya.consumerapp.data.bio.FollowingEntity
 import com.daya.consumerapp.data.general.FollowersFollowing
 import com.daya.consumerapp.data.general.GeneralBio

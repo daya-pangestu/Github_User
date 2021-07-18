@@ -1,10 +1,10 @@
 package com.daya.githubuser.presentation.search
 
 import androidx.lifecycle.*
-import com.daya.githubuser.data.Resource
-import com.daya.githubuser.domain.model.GeneralBio
-import com.daya.githubuser.domain.usecase.profile.SearchUserUseCase
-import com.daya.githubuser.utils.debounce
+import com.daya.core.data.Resource
+import com.daya.core.domain.model.GeneralBio
+import com.daya.core.domain.usecase.profile.SearchUserUseCase
+import com.daya.core.utils.debounce
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

@@ -3,7 +3,7 @@ package com.daya.githubuser.presentation.detail.follow
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.daya.githubuser.domain.model.FollowersFollowing
+import com.daya.core.domain.model.FollowersFollowing
 
 class FollowFragmentStateAdapter(
     activity: FragmentActivity,

@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import ca.allanwang.kau.utils.toast
 import com.daya.githubuser.R
-import com.daya.githubuser.data.Resource
+import com.daya.core.data.Resource
 import com.daya.githubuser.databinding.FragmentForYouBinding
 import com.daya.githubuser.presentation.detail.DetailActivity
 import com.faltenreich.skeletonlayout.Skeleton

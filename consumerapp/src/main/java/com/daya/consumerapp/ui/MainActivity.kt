@@ -20,8 +20,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         val userAdapter = UserProfileAdapter()
 
-        val int = R.drawable.user1
-        Log.d("tag","user 1 $int")
         binding.apply {
             rvFav.adapter = userAdapter
             rvFav.layoutManager = LinearLayoutManager(this@MainActivity)

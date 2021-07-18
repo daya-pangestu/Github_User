@@ -7,8 +7,8 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.net.Uri
 import androidx.sqlite.db.SupportSQLiteQueryBuilder
-import com.daya.githubuser.data.di.GithubUserDatabase
-import com.daya.githubuser.data.di.ProfileDao
+import com.daya.core.data.di.GithubUserDatabase
+import com.daya.core.data.di.ProfileDao
 import com.daya.githubuser.presentation.contentprovider.ProviderContract.AUTHORITY
 import com.daya.githubuser.presentation.contentprovider.ProviderContract.CONTENT_URI
 import com.daya.githubuser.presentation.contentprovider.ProviderContract.TABLE_NAME

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.daya.githubuser.domain.model.FollowersFollowing
+import com.daya.core.domain.model.FollowersFollowing
 import com.daya.githubuser.databinding.ItemFollowBinding
 
 

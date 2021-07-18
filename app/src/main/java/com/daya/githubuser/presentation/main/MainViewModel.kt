@@ -1,10 +1,10 @@
 package com.daya.githubuser.presentation.main
 
 import androidx.lifecycle.*
-import com.daya.githubuser.data.Resource
-import com.daya.githubuser.domain.model.GeneralBio
-import com.daya.githubuser.domain.usecase.profile.GetListBioUseCase
-import com.daya.githubuser.domain.usecase.profile.GetListFavoriteUseCase
+import com.daya.core.data.Resource
+import com.daya.core.domain.model.GeneralBio
+import com.daya.core.domain.usecase.profile.GetListBioUseCase
+import com.daya.core.domain.usecase.profile.GetListFavoriteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

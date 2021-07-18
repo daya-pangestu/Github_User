@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ca.allanwang.kau.utils.hideKeyboard
 import ca.allanwang.kau.utils.toast
 import com.daya.githubuser.R
-import com.daya.githubuser.data.Resource
+import com.daya.core.data.Resource
 import com.daya.githubuser.databinding.ActivitySearchBinding
 import com.daya.githubuser.presentation.detail.DetailActivity
 import com.daya.githubuser.presentation.detail.DetailActivity.Companion.KEY_USER_EXTRA
@@ -113,7 +113,7 @@ class SearchActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        finish()
         super.onBackPressed()
+        finish()
     }
 }

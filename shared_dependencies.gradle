@@ -1,0 +1,7 @@
+
+//place dependencies that can be shared between consumerapp, app and core, specifically that use kapt
+dependencies {
+    //hilt
+    implementation 'com.google.dagger:hilt-android:2.37'
+    kapt 'com.google.dagger:hilt-compiler:2.37'
+}

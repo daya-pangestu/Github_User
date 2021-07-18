@@ -3,9 +3,9 @@ package com.daya.githubuser
 import android.app.Application
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
-import com.daya.githubuser.data.Resource
-import com.daya.githubuser.domain.usecase.pref.GetIsFirstRunUseCase
-import com.daya.githubuser.domain.usecase.pref.SetFirstRunUseCase
+import com.daya.core.data.Resource
+import com.daya.core.domain.usecase.pref.GetIsFirstRunUseCase
+import com.daya.core.domain.usecase.pref.SetFirstRunUseCase
 import com.daya.githubuser.presentation.settings.AlarmReceiver
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.MainScope

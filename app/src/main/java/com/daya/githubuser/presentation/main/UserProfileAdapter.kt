@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.daya.githubuser.R
-import com.daya.githubuser.domain.model.GeneralBio
+import com.daya.core.domain.model.GeneralBio
 import com.daya.githubuser.databinding.ItemUserBinding
-import com.daya.githubuser.utils.avatarForMainApp
-import com.daya.githubuser.utils.isValidUrl
-import com.daya.githubuser.utils.trimLocationName
+import com.daya.core.utils.avatarForMainApp
+import com.daya.core.utils.isValidUrl
+import com.daya.core.utils.trimLocationName
 
 open class UserProfileAdapter(private val itemClick : (GeneralBio) -> Unit) : ListAdapter<GeneralBio, UserProfileAdapter.UserProfileViewHolder>(userBioDiffUtil) {
 

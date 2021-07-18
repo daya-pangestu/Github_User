@@ -1,9 +1,9 @@
 package com.daya.githubuser.presentation.detail
 
 import androidx.lifecycle.*
-import com.daya.githubuser.data.Resource
-import com.daya.githubuser.domain.model.GeneralBio
-import com.daya.githubuser.domain.usecase.detail.*
+import com.daya.core.data.Resource
+import com.daya.core.domain.model.GeneralBio
+import com.daya.core.domain.usecase.detail.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*

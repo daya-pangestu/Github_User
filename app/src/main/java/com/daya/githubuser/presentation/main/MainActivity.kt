@@ -5,11 +5,12 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import ca.allanwang.kau.utils.toast
 import com.daya.githubuser.R
 import com.daya.githubuser.databinding.ActivityMainBinding
 import com.daya.githubuser.presentation.settings.SettingsActivity
 import com.daya.githubuser.presentation.search.SearchActivity
-import com.daya.githubuser.utils.capitalized
+import com.daya.core.utils.capitalized
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,6 +31,10 @@ class MainActivity : AppCompatActivity() {
                 else -> getString(R.string.favorite).capitalized()
             }
         }.attach()
+
+        binding.extendedFAB.setOnClickListener {
+            toast("fab cliked")
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

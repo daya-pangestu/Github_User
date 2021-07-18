@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.daya.githubuser.domain.model.FollowersFollowing
+import com.daya.core.domain.model.FollowersFollowing
 import com.daya.githubuser.databinding.FragmentFollowerFollowingBinding
 
 class FollowerFollowingFragment : Fragment() {

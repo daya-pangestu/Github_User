@@ -1,5 +1,6 @@
 package com.daya.githubuser.favorite.presentation
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -14,6 +15,7 @@ import com.daya.githubuser.favorite.databinding.ActivityFavoriteBinding
 import com.daya.githubuser.favorite.di.DaggerFavoriteComponent
 import com.daya.core.di.dfm.FavoriteModuleDependencies
 import com.daya.githubuser.favorite.presentation.factory.ViewModelFactory
+import com.daya.githubuser.presentation.detail.DetailActivity.Companion.KEY_USER_EXTRA
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
 import dagger.hilt.android.EntryPointAccessors
@@ -47,8 +49,17 @@ class FavoriteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityFavoriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        val userAdapter = UserProfileAdapter()
+        supportActionBar?.apply{
+            setDisplayHomeAsUpEnabled(true)
+            title = getString(R.string.favorite)
+        }
+
+        val userAdapter = UserProfileAdapter {bio ->
+            val intent = Intent(this,Class.forName("com.daya.githubuser.presentation.detail.DetailActivity")).also {
+                it.putExtra(KEY_USER_EXTRA,bio)
+            }
+            startActivity(intent)
+        }
 
         binding.rvUsersFav.apply {
             adapter = userAdapter

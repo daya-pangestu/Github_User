@@ -15,11 +15,12 @@ import com.daya.core.utils.avatarForMainApp
 import com.daya.core.utils.isValidUrl
 import com.daya.core.utils.trimLocationName
 
-open class UserProfileAdapter : ListAdapter<GeneralBio, UserProfileAdapter.UserProfileViewHolder>(userBioDiffUtil) {
+open class UserProfileAdapter(private val itemClick : (GeneralBio) -> Unit) : ListAdapter<GeneralBio, UserProfileAdapter.UserProfileViewHolder>(userBioDiffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserProfileViewHolder {
         val binding = ItemUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return UserProfileViewHolder(binding)
+        return UserProfileViewHolder(binding,itemClick)
+
     }
 
     override fun onBindViewHolder(holder: UserProfileViewHolder, position: Int) {
@@ -27,8 +28,16 @@ open class UserProfileAdapter : ListAdapter<GeneralBio, UserProfileAdapter.UserP
         holder.bind(item)
     }
 
-    inner class UserProfileViewHolder(private val binding: ItemUserBinding) :
+    inner class UserProfileViewHolder(
+        private val binding: ItemUserBinding,
+        itemClick: (GeneralBio) -> Unit
+    ) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            itemView.setOnClickListener { itemClick(getItem(bindingAdapterPosition)) }
+        }
+
         fun bind(item: GeneralBio) {
             val avatar = if (item.avatar.isValidUrl()) item.avatar else item.avatar.avatarForMainApp()
 

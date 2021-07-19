@@ -18,7 +18,10 @@ class SettingsActivity : AppCompatActivity() {
                 .replace(R.id.settings, SettingsFragment())
                 .commit()
         }
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.apply{
+            setDisplayHomeAsUpEnabled(true)
+            title = getString(R.string.settings)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

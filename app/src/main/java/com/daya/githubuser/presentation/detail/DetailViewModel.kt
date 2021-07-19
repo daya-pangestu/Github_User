@@ -1,11 +1,13 @@
 package com.daya.githubuser.presentation.detail
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.daya.core.data.Resource
 import com.daya.core.domain.model.GeneralBio
 import com.daya.core.domain.usecase.detail.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -36,6 +38,7 @@ private val getCurrentDetailFavoriteUserUseCase: GetCurrentDetailFavoriteUserUse
             when {
                 bio.isPersisted() -> {
                     val generalBio = getCurrentDetailFavoriteUserUseCase(bio.username)
+                    isUserFavorite.value = true
                     emit(generalBio)
                 }
                 bio.needFetch() -> {

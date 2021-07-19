@@ -95,8 +95,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         binding.extendedFAB.setOnClickListener {
-            val uri = Uri.parse("githubuser://favorite")
-            startActivity(Intent(Intent.ACTION_VIEW,uri))
+            startActivity(Intent(this,Class.forName("com.daya.githubuser.favorite.presentation.FavoriteActivity")))
         }
     }
 

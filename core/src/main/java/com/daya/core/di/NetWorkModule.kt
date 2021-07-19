@@ -8,6 +8,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.CertificatePinner
+import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -26,12 +28,25 @@ object NetWorkModule {
         .add(NullAbleStringFieldAdapter)
         .build()
 
+
     @Provides
     @Singleton
-    fun provideGithubUserClient(moshi: Moshi): Retrofit {
+    fun provideOkHttp(baseUrl: String): OkHttpClient {
+        val certificatePinner = CertificatePinner.Builder()
+            .add(baseUrl, "sha256/ORtIOYkm5k6Nf2tgAK/uwftKfNhJB3QS0Hs608SiRmE==")
+            .build()
+        return OkHttpClient.Builder()
+            .certificatePinner(certificatePinner)
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideGithubUserClient(baseUrl : String,moshi: Moshi, okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://api.github.com")
+            .baseUrl(baseUrl)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .client(okHttpClient)
             .build()
     }
 
@@ -40,6 +55,10 @@ object NetWorkModule {
     fun provideGithubApiService(client: Retrofit): GithubUserApiService {
         return client.create(GithubUserApiService::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun provideBaseUrl()  = "https://api.github.com"
 }
 
 interface GithubUserApiService {

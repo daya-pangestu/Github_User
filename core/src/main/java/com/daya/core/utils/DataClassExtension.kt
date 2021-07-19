@@ -1,3 +1,5 @@
+@file:Suppress("unused", "unused")
+
 package com.daya.core.utils
 
 import com.daya.core.data.di.bio.BioEntity

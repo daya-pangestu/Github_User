@@ -1,6 +1,8 @@
 package com.daya.githubuser.presentation.main
 
+import android.graphics.drawable.Drawable
 import android.text.SpannableStringBuilder
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.text.bold
@@ -8,11 +10,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.daya.githubuser.R
 import com.daya.core.domain.model.GeneralBio
 import com.daya.githubuser.databinding.ItemUserBinding
-import com.daya.core.utils.avatarForMainApp
-import com.daya.core.utils.isValidUrl
 import com.daya.core.utils.trimLocationName
 
 open class UserProfileAdapter(private val itemClick : (GeneralBio) -> Unit) : ListAdapter<GeneralBio, UserProfileAdapter.UserProfileViewHolder>(userBioDiffUtil) {
@@ -30,13 +34,31 @@ open class UserProfileAdapter(private val itemClick : (GeneralBio) -> Unit) : Li
     inner class UserProfileViewHolder(private val binding: ItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: GeneralBio, itemClick: (GeneralBio) ->Unit) {
-            val avatar = if (item.avatar.isValidUrl()) item.avatar else item.avatar.avatarForMainApp()
 
             Glide.with(itemView)
-                    .load(avatar)
-                    .dontAnimate()
-                    .placeholder(android.R.color.darker_gray)
-                    .into(binding.profileImage)
+                .load(item.avatar)
+                .dontAnimate()
+                .placeholder(android.R.color.darker_gray)
+                .addListener(object :RequestListener<Drawable>{
+                    override fun onLoadFailed(
+                        e: GlideException?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        Log.e("glide","${e?.localizedMessage}")
+                        return true
+                    }
+
+                    override fun onResourceReady(
+                        resource: Drawable?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        dataSource: DataSource?,
+                        isFirstResource: Boolean
+                    ): Boolean = false
+                })
+                .into(binding.profileImage)
 
             binding.tvUserName.text = item.username
             binding.tvName.text = item.name

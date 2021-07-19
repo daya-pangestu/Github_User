@@ -22,7 +22,7 @@ allprojects {
         google()
         mavenCentral()
         maven { url "https://jitpack.io" }
-        jcenter() //for skeleton, till the owner move it to mavencentral
+        jcenter() //for skeleton, till the owner move it to mavenCentral
 
     }
 }

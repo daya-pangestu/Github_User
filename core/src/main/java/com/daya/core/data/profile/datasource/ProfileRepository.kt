@@ -34,10 +34,9 @@ constructor(
         return netWorkListBioDataSource.getListBio(userName)
     }
 
-     override suspend fun getDetailBioFromNetwork(userName: String): GeneralBio {
-        val flowBio = networkDetailBioDataSource.getDetailBio(userName)
+    override suspend fun getDetailBioFromNetwork(userName: String): GeneralBio {
 
-        return flowBio
+        return networkDetailBioDataSource.getDetailBio(userName)
     }
 
      override suspend fun getListFollowersFromNetwork(userName: String): List<FollowersFollowing> {

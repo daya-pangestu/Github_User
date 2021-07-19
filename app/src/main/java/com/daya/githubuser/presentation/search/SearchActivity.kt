@@ -2,16 +2,15 @@ package com.daya.githubuser.presentation.search
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.daya.githubuser.R
 import com.daya.core.data.Resource
 import com.daya.core.utils.toast
+import com.daya.githubuser.R
 import com.daya.githubuser.databinding.ActivitySearchBinding
 import com.daya.githubuser.presentation.detail.DetailActivity
 import com.daya.githubuser.presentation.detail.DetailActivity.Companion.KEY_USER_EXTRA

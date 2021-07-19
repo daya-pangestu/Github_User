@@ -97,9 +97,8 @@ constructor(
 
    private fun List<ResourceBio>.sanitizeListBio(): List<GeneralBio> {
       return this.map{ localBio ->
-         val sanitizeAvaName = localBio.avatar.avatarToResDrawable()
          GeneralBio(
-            avatar = sanitizeAvaName,
+            avatar = localBio.avatar,
             company = localBio.company,
             followerCount = localBio.follower,
             followingCount = localBio.following,
@@ -109,14 +108,5 @@ constructor(
             username = localBio.username
          )
       }
-   }
-
-   private fun String.avatarToResDrawable(): String {
-      val sanitizeAvaName = this.removePrefix("@drawable/")
-      val resDrawableId =
-         context.resources.getIdentifier(sanitizeAvaName, "drawable", context.packageName)
-      val resDrawable = resDrawableId.toString()
-
-      return "$resDrawable-$this"
    }
 }

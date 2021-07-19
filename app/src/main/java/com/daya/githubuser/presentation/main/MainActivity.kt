@@ -1,11 +1,9 @@
 package com.daya.githubuser.presentation.main
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -61,9 +59,9 @@ class MainActivity : AppCompatActivity() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
                     if (dy > 0) { // Scrolling up
-                        binding.extendedFAB.shrink()
+                        binding.extendedFab.shrink()
                     } else {// Scrolling down
-                        binding.extendedFAB.extend()
+                        binding.extendedFab.extend()
                     }
                 }
             })
@@ -94,7 +92,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        binding.extendedFAB.setOnClickListener {
+        binding.extendedFab.setOnClickListener {
             startActivity(Intent(this,Class.forName("com.daya.githubuser.favorite.presentation.FavoriteActivity")))
         }
     }

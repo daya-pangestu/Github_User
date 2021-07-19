@@ -7,24 +7,14 @@
     tools:context=".presentation.main.MainActivity">
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--    <androidx.viewpager2.widget.ViewPager2-->
-    <!--        android:id="@+id/viewPager2"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />-->
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_users"
         android:layout_width="0dp"
+        android:id="@+id/rv_users"
         android:layout_height="0dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,9 +24,9 @@
         tools:listitem="@layout/item_user" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/extendedFAB"
         android:layout_width="wrap_content"
         app:fabSize="mini"
+        android:id="@+id/extended_fab"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="@string/view_favorite"

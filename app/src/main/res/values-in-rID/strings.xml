@@ -7,14 +7,9 @@
     <string name="repository">repository</string>
     <string name="detail_user">Detail User</string>
     <string name="search">cari</string>
-    <string name="retry">cob lagi</string>
     <string name="add_favorite">Tambah Favorite</string>
     <string name="unfavorite">Hapus Favorit</string>
     <string name="favorite">favorit</string>
-    <string name="for_you">untuk mu</string>
-    <string name="messages_header">Pesan</string>
-    <string name="sync_header">singkron</string>
-    <string name="signature_title">Signature anda</string>
     <string name="settings">pengaturan</string>
     <string name="notif_title">Temui Orang Baru di Github!</string>
     <string name="notif_content_body">"Anda Bisa Mencari Profile Github Lain dari App "</string>

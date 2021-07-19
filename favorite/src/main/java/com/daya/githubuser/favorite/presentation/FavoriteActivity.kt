@@ -1,19 +1,19 @@
 package com.daya.githubuser.favorite.presentation
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.daya.core.data.Resource
+import com.daya.core.di.dfm.FavoriteModuleDependencies
 import com.daya.githubuser.R
 import com.daya.githubuser.favorite.databinding.ActivityFavoriteBinding
 import com.daya.githubuser.favorite.di.DaggerFavoriteComponent
-import com.daya.core.di.dfm.FavoriteModuleDependencies
 import com.daya.githubuser.favorite.presentation.factory.ViewModelFactory
 import com.daya.githubuser.presentation.detail.DetailActivity.Companion.KEY_USER_EXTRA
 import com.faltenreich.skeletonlayout.Skeleton

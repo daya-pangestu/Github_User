@@ -16,7 +16,6 @@ import com.daya.githubuser.R
 import java.text.SimpleDateFormat
 import java.util.*
 
-//TODO find the best layer to put it, for now, treat it as a ui
 class AlarmReceiver  : BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {

@@ -29,17 +29,4 @@ constructor(
     val getListBioLiveData
         get() = _getListBioUseCase
 
-    private val _getListFavoriteUseCase = liveData<Resource<List<GeneralBio>>> {
-        if (latestValue == null) {
-            emit(Resource.Loading)
-            emitSource(getListFavoriteUseCase(Unit).asLiveData())
-            return@liveData
-        } else {
-            emit(latestValue!!)
-        }
-    }
-
-    val getListFavoriteLiveData
-        get() = _getListFavoriteUseCase
-
 }

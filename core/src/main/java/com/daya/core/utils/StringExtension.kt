@@ -19,7 +19,3 @@ fun String.avatarForMainApp(): Int {
 fun String.isValidUrl(): Boolean {
     return URLUtil.isValidUrl(this) && Patterns.WEB_URL.matcher(this).matches()
 }
-
-fun String.capitalized() : String {
-    return this.replaceFirstChar(Char::uppercase)
-}

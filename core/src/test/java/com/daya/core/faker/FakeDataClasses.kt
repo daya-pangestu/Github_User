@@ -27,7 +27,7 @@ object FakeDataClasses {
         )
     }
 
-    val generalBio
+    val listGeneralBio
         get() = List(10){
             GeneralBio(
                 avatar = randomUrl,

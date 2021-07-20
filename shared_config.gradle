@@ -20,6 +20,7 @@ android{
         freeCompilerArgs = ["-Xallow-result-return-type"]
     }
 }
+apply plugin: "com.vanniktech.android.junit.jacoco"
 
 kapt {
     correctErrorTypes true

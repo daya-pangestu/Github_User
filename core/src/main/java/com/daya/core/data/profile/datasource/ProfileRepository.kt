@@ -35,7 +35,6 @@ constructor(
     }
 
     override suspend fun getDetailBioFromNetwork(userName: String): GeneralBio {
-
         return networkDetailBioDataSource.getDetailBio(userName)
     }
 

@@ -12,19 +12,32 @@ jobs:
     # These next lines define the Android machine image executor: https://circleci.com/docs/2.0/executor-types/
     executor:
       name: android/android-machine
+      resource-class: large
 
     steps:
       # Checkout the code as the first step.
       - checkout
 
+      - android/restore-build-cache
+      - android/restore-gradle-cache
+
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+
+      - android/save-build-cache
+      - android/save-gradle-cache
+
       # The next step will run the unit tests
       - android/run-tests:
-          test-command: ./gradlew lint testDebug --continue
+          test-command: ./gradlew jacocoTestReportDebug
 
-      # Then start the emulator and run the Instrumentation tests!
-      - android/start-emulator-and-run-tests:
-          test-command: ./gradlew connectedDebugAndroidTest
-          system-image: system-images;android-25;google_apis;x86
+      - store_test_results:
+          path: core/build/reports/jacoco/debug/
+
+      - store_artifacts:
+          path: core/build/reports/jacoco/debug/
+
 
       # And finally run the release build
       - run:

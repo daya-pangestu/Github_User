@@ -46,7 +46,7 @@ class NetworkDetailBioDataSourceTest {
     }
 
     @Test
-    fun `getDetailBio should return list generalBio`() = runBlocking {
+    fun `networkGetDetailBio should return list generalBio`() = runBlocking {
         val expectedResponse = FakeDataClasses.networkBio[0]
         val moshiAdapter = moshi.adapter(NetWorkBio::class.java)
         val expectedJsonResponse = moshiAdapter.toJson(expectedResponse)

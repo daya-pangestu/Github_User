@@ -1,5 +1,7 @@
 package com.daya.core.faker
 
+import com.daya.core.data.di.bio.BioEntity
+import com.daya.core.data.di.bio.BioEntityWithFollowersFollowing
 import com.daya.core.data.profile.network.NetWorkBio
 import com.daya.core.domain.model.FollowersFollowing
 import com.daya.core.domain.model.GeneralBio
@@ -41,5 +43,42 @@ object FakeDataClasses {
                 followings = emptyList(),
             )
         }
+
+    val entityBio
+        get() = List(5){
+            BioEntity(
+                username  = faker.app.author(),
+                avatar  = randomUrl,
+                followersUrl  = "",
+                followingUrl= "",
+                name  = faker.name.firstName(),
+                company  = faker.company.name(),
+                location  = faker.address.cityName(),
+                followerCount  = randomNumber,
+                followingCount  = randomNumber,
+                repoCount  = randomNumber,
+            )
+        }
+
+
+    val bioEntityWithFollowersFollowing
+        get() = BioEntityWithFollowersFollowing(
+            bio = BioEntity(
+                username  = faker.app.author(),
+                avatar  = randomUrl,
+                followersUrl  = "",
+                followingUrl= "",
+                name  = faker.name.firstName(),
+                company  = faker.company.name(),
+                location  = faker.address.cityName(),
+                followerCount  = randomNumber,
+                followingCount  = randomNumber,
+                repoCount  = randomNumber,
+            ),
+            followers = emptyList(),
+            following = emptyList(),
+
+            )
+
     
 }

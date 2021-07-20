@@ -58,11 +58,11 @@ class NetworkDetailBioDataSourceTest {
 
         val actualResponse = networkDetailBioDataSource.getDetailBio(expectedResponse.name)
 
-        assertThat(expectedResponse.name).isEqualTo(actualResponse.name)
-        assertThat(expectedResponse.avatar_url).isEqualTo(actualResponse.avatar)
-        assertThat(expectedResponse.company).isEqualTo(actualResponse.company)
-        assertThat(expectedResponse.location).isEqualTo(actualResponse.location)
-        assertThat(expectedResponse.public_repos).isEqualTo(actualResponse.repoCount)
+        assertThat(actualResponse.name).isEqualTo(expectedResponse.name)
+        assertThat(actualResponse.avatar).isEqualTo(expectedResponse.avatar_url)
+        assertThat(actualResponse.company).isEqualTo(expectedResponse.company)
+        assertThat(actualResponse.location).isEqualTo(expectedResponse.location)
+        assertThat(actualResponse.repoCount).isEqualTo(expectedResponse.public_repos)
 
     }
 }

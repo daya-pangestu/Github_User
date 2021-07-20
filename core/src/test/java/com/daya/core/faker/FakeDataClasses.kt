@@ -3,6 +3,7 @@ package com.daya.core.faker
 import com.daya.core.data.di.bio.BioEntity
 import com.daya.core.data.di.bio.BioEntityWithFollowersFollowing
 import com.daya.core.data.profile.network.NetWorkBio
+import com.daya.core.data.profile.network.NetWorkUsers
 import com.daya.core.domain.model.FollowersFollowing
 import com.daya.core.domain.model.GeneralBio
 import com.daya.core.faker.KotlinFaker.faker
@@ -64,21 +65,27 @@ object FakeDataClasses {
     val bioEntityWithFollowersFollowing
         get() = BioEntityWithFollowersFollowing(
             bio = BioEntity(
-                username  = faker.app.author(),
-                avatar  = randomUrl,
-                followersUrl  = "",
-                followingUrl= "",
-                name  = faker.name.firstName(),
-                company  = faker.company.name(),
-                location  = faker.address.cityName(),
-                followerCount  = randomNumber,
-                followingCount  = randomNumber,
-                repoCount  = randomNumber,
+                username = faker.app.author(),
+                avatar = randomUrl,
+                followersUrl = "",
+                followingUrl = "",
+                name = faker.name.firstName(),
+                company = faker.company.name(),
+                location = faker.address.cityName(),
+                followerCount = randomNumber,
+                followingCount = randomNumber,
+                repoCount = randomNumber,
             ),
             followers = emptyList(),
             following = emptyList(),
 
             )
 
+    val networkUsers
+        get() = NetWorkUsers(
+            listNetWorkBio = networkBio,
+            incomplete_results = false,
+            total_count = 5
+        )
     
 }

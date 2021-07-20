@@ -25,6 +25,10 @@ jobs:
       - android/restore-gradle-cache
 
       - run:
+          name: show current dir
+          command: ls
+
+      - run:
           name: Chmod permissions
           command: sudo chmod +x ./gradlew
 

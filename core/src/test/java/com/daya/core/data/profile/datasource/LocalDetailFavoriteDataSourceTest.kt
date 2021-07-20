@@ -1,17 +1,14 @@
 package com.daya.core.data.profile.datasource
 
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.daya.core.data.di.ProfileDao
 import com.daya.core.faker.FakeDataClasses
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import org.junit.Before
-import org.junit.runner.RunWith
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 
-@RunWith(AndroidJUnit4::class)
 class LocalDetailFavoriteDataSourceTest  {
 
     val profileDao: ProfileDao = mock()

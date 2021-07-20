@@ -18,7 +18,6 @@ jobs:
       resource-class: large
 
     steps:
-      # Checkout the code as the first step.
       - checkout
 
       - android/restore-build-cache
@@ -31,22 +30,20 @@ jobs:
       - android/save-build-cache
       - android/save-gradle-cache
 
-      # The next step will run the unit tests
       - android/run-tests:
           test-command: ./gradlew jacocoTestReportDebug
 
-      - store_test_results:
-          path: core/build/reports/jacoco/debug/
+      - store_artifacts:
+          path: core/build/reports/jacoco/debug/jacoco.xml
+
+      - run:
+          name: build apk
+          command: |
+            ./gradlew build
 
       - store_artifacts:
-          path: core/build/reports/jacoco/debug/
-
-
-      # And finally run the release build
-      - run:
-          name: Assemble release build
-          command: |
-            ./gradlew assembleRelease    
+         path: app/build/outputs/apk/debug/
+         destination: artifact-file
 
 workflows:
   # Below is the definition of your workflow.

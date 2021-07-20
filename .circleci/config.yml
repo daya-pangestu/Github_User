@@ -5,6 +5,7 @@ version: 2.1
 # Orbs are reusable packages of CircleCI configuration that you may share across projects, enabling you to create encapsulated, parameterized commands, jobs, and executors that can be used across multiple projects.
 orbs:
   android: circleci/android@1.0.3
+  codecov: codecov/codecov@1.2.5
 
 jobs:
 
@@ -35,6 +36,11 @@ jobs:
 
       - store_artifacts:
           path: core/build/reports/jacoco/debug/jacoco.xml
+
+      - codecov/upload:
+          file: core/build/reports/jacoco/debug/jacoco.xml
+          flags: unitTest
+          token: CODECOV_TOKEN
 
       - run:
           name: build apk

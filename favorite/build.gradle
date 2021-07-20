@@ -3,6 +3,8 @@ plugins {
     id 'kotlin-android'
     id 'dagger.hilt.android.plugin'
     id 'kotlin-kapt'
+    id 'com.vanniktech.android.junit.jacoco'
+
 }
 apply from: '../shared_config.gradle'
 apply from: '../shared_dependencies.gradle'

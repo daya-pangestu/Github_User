@@ -55,7 +55,7 @@ class ProfileRepositoryTest {
             whenever(netWorkListBioDataSource.getListBio(dummyGeneralBio.username)).thenReturn(dummyListGeneralBio)
             val actualListBio = profileRepository.searchUsers(dummyGeneralBio.username)
 
-            verify(jsonProfileDataSourceList).getListBio(dummyGeneralBio.username)
+            verify(netWorkListBioDataSource).getListBio(dummyGeneralBio.username)
             assertThat(actualListBio).isEqualTo(dummyListGeneralBio)
         }
     }

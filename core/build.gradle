@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'kotlin-parcelize'
+    id 'com.vanniktech.android.junit.jacoco'
 
 }
 apply from: '../shared_config.gradle'
@@ -36,10 +37,6 @@ android {
     }
     testOptions.unitTests.includeAndroidResources = true
 
-}
-
-hilt {
-    enableTransformForLocalTests = true
 }
 
 dependencies {

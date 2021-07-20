@@ -20,11 +20,43 @@ android{
         freeCompilerArgs = ["-Xallow-result-return-type"]
     }
 }
-apply plugin: "com.vanniktech.android.junit.jacoco"
-
 kapt {
     correctErrorTypes true
 }
 
 
 
+junitJacoco {
+    excludes =  [
+            '**/*_MembersInjector.class',
+            '**/Dagger*Component.class',
+            '**/Dagger*Component$Builder.class',
+            '**/Dagger*Subcomponent*.class',
+            '**/*Subcomponent$Builder.class',
+            '**/*Module_*Factory.class',
+            '**/di/module/*',
+            '**/*_Factory*.*',
+            '**/*Module*.*',
+            '**/*Dagger*.*',
+            '**/*Hilt*.*',
+            '**/*JsonAdapter.*',
+            '**/*MapperImpl*.*',
+            '**/*$ViewInjector*.*',
+            '**/*$ViewBinder*.*',
+            '**/BuildConfig.*',
+            '**/*Component*.*',
+            '**/*BR*.*',
+            '**/Manifest*.*',
+            '**/*$Lambda$*.*',
+            '**/*Companion*.*',
+            '**/*Module*.*',
+            '**/*Dagger*.*',
+            '**/*Hilt*.*',
+            '**/*MembersInjector*.*',
+            '**/*_MembersInjector.class',
+            '**/*_Factory*.*',
+            '**/*_Provide*Factory*.*',
+            '**/*Resource.*',
+            '**/*Resource$*.*',
+    ]
+}

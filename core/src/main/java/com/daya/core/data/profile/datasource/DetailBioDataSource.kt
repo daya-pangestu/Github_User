@@ -138,7 +138,6 @@ constructor(
     }
 }
 
-
 class LocalDetailFavoriteDataSource
 @Inject
 constructor(
@@ -147,16 +146,7 @@ constructor(
 
     override suspend fun getDetailBio(userName: String): GeneralBio {
         val user = profileDao.getUserFavorite(userName)
-
-        val following = profileDao.getFollowing(userName)
-
-        val followers = profileDao.getFollowers(userName)
-
-        val generalbio = user?.toGeneralBio().apply {
-            this?.followers = followers.toFollowersFollowing()
-            this?.followings = following.toFollowersFollowing()
-        }
-
+        val generalbio = user?.toGeneralBio()
         return generalbio!!
     }
 

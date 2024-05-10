@@ -39,6 +39,7 @@ class GithubUserApp : Application() {
                     }
                     setFirstRunUsecase(false)
                 }
+                else -> {}
             }
         }
     }

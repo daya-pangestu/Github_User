@@ -2,11 +2,11 @@
 //place dependencies that can be shared between consumerapp, app and core, specifically that use kapt
 dependencies {
     //hilt
-    implementation 'com.google.dagger:hilt-android:2.37'
-    kapt 'com.google.dagger:hilt-compiler:2.37'
+    implementation 'com.google.dagger:hilt-android:2.50'
+    kapt 'com.google.dagger:hilt-compiler:2.50'
 
 
-   debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.14'
 
 }
 

@@ -73,7 +73,7 @@ class FavoriteActivity : AppCompatActivity() {
             )
         }
 
-        favoriteViewModel.getListFavoriteLiveData.observe(this, {
+        favoriteViewModel.getListFavoriteLiveData.observe(this) {
             when (it) {
                 is Resource.Loading -> {
                     if (::skeleton.isInitialized) {
@@ -84,6 +84,7 @@ class FavoriteActivity : AppCompatActivity() {
                         }
                     }
                 }
+
                 is Resource.Success -> {
                     lifecycleScope.launch {
                         delay(500)
@@ -91,12 +92,13 @@ class FavoriteActivity : AppCompatActivity() {
                         userAdapter.submitList(it.data)
                     }
                 }
+
                 is Resource.Error -> {
                     if (::skeleton.isInitialized) skeleton.showOriginal()
-                    Toast.makeText(this,it.exceptionMessage.toString(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, it.exceptionMessage.toString(), Toast.LENGTH_SHORT).show()
                 }
             }
-        })
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

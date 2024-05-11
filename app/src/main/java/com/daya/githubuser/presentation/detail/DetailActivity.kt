@@ -3,6 +3,7 @@ package com.daya.githubuser.presentation.detail
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.addCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -19,7 +20,6 @@ import com.faltenreich.skeletonlayout.createSkeleton
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.util.*
 
 @AndroidEntryPoint
 class DetailActivity : AppCompatActivity() {
@@ -34,6 +34,9 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        onBackPressedDispatcher.addCallback(this){
+            finish()
+        }
         val bio = intent.getParcelableExtra<GeneralBio>(KEY_USER_EXTRA)
         detailViewModel.sculptingBio(bio)
 
@@ -100,7 +103,7 @@ class DetailActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                onBackPressed()
+                onBackPressedDispatcher.onBackPressed()
                 true
             }
             R.id.detail_add_favorite -> {
@@ -113,10 +116,6 @@ class DetailActivity : AppCompatActivity() {
             }
             else ->super.onOptionsItemSelected(item)
         }
-    }
-
-    override fun onBackPressed() {
-        finish()
     }
 
     companion object{

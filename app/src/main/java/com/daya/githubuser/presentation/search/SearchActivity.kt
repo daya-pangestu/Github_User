@@ -2,6 +2,7 @@ package com.daya.githubuser.presentation.search
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.addCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -38,6 +39,7 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        onBackPressedDispatcher.addCallback(this) { finish() }
 
         val suggestionAdapter = SuggestionAdapter{ bio ->
             val intentToDetail = Intent(this, DetailActivity::class.java)
@@ -47,7 +49,7 @@ class SearchActivity : AppCompatActivity() {
 
         binding.apply {
             searchView.setOnLeftBtnClickListener {
-                onBackPressed()
+                onBackPressedDispatcher.onBackPressed()
             }
 
             searchView.isVoiceInputButtonEnabled = false
@@ -61,7 +63,7 @@ class SearchActivity : AppCompatActivity() {
             }
 
             searchView.setOnLeftBtnClickListener {
-                onBackPressed()
+                onBackPressedDispatcher.onBackPressed()
             }
 
             searchView.setOnSearchQueryChangeListener { _, _, newQuery ->
@@ -116,10 +118,5 @@ class SearchActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        finish()
     }
 }

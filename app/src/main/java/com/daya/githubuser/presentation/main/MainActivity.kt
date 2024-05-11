@@ -67,17 +67,18 @@ class MainActivity : AppCompatActivity() {
             })
         }
 
-        mainViewModel.getListBioLiveData.observe(this, {
+        mainViewModel.getListBioLiveData.observe(this) {
             when (it) {
                 is Resource.Loading -> {
                     if (::skeleton.isInitialized) {
                         skeleton.showSkeleton()
                     } else {
-                        skeleton = binding.rvUsers.applySkeleton(R.layout.item_user,10).apply {
+                        skeleton = binding.rvUsers.applySkeleton(R.layout.item_user, 10).apply {
                             showSkeleton()
                         }
                     }
                 }
+
                 is Resource.Success -> {
                     lifecycleScope.launch {
                         delay(500)
@@ -85,12 +86,13 @@ class MainActivity : AppCompatActivity() {
                         userAdapter.submitList(it.data)
                     }
                 }
+
                 is Resource.Error -> {
                     if (::skeleton.isInitialized) skeleton.showOriginal()
                     toast(it.exceptionMessage.toString())
                 }
             }
-        })
+        }
 
         binding.extendedFab.setOnClickListener {
             startActivity(Intent(this,Class.forName("com.daya.githubuser.favorite.presentation.FavoriteActivity")))

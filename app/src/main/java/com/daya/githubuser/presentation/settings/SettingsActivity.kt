@@ -36,9 +36,7 @@ class SettingsActivity : AppCompatActivity() {
 
     class SettingsFragment : PreferenceFragmentCompat(),
         SharedPreferences.OnSharedPreferenceChangeListener {
-         private val reminder : String by lazy {
-            resources.getString(R.string.key_pref_reminder)
-        }
+         private val reminder : String by lazy { getString(R.string.key_pref_reminder) }
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
 

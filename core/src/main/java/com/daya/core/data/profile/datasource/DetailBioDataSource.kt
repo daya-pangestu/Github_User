@@ -35,24 +35,20 @@ constructor(
 
         client.enqueue(object : Callback<NetWorkBio>{
             override fun onResponse(call: Call<NetWorkBio>, response: Response<NetWorkBio>) {
-                val netBio = response.body()
-                if (netBio != null) {
-                    val generalBio =  GeneralBio(
-                                username = netBio.login,
-                                followersUrl = netBio.followers_url,
-                                followingUrl = netBio.following_url,
-                                avatar =  netBio.avatar_url,
-                                name = netBio.name,
-                                location = netBio.location,
-                                repoCount = netBio.public_repos,
-                                followingCount = netBio.following,
-                                followerCount = netBio.followers,
-                                company = netBio.company
-                        )
-                    continuation.resume(generalBio)
-                } else {
-                    continuation.resumeWithException(NoSuchElementException("${response.errorBody()?.string()}"))
-                }
+                val netBio = response.body() ?: return  continuation.resumeWithException(NoSuchElementException("${response.errorBody()?.string()}"))
+                val generalBio = GeneralBio(
+                    username = netBio.login,
+                    followersUrl = netBio.followers_url,
+                    followingUrl = netBio.following_url,
+                    avatar = netBio.avatar_url,
+                    name = netBio.name,
+                    location = netBio.location,
+                    repoCount = netBio.public_repos,
+                    followingCount = netBio.following,
+                    followerCount = netBio.followers,
+                    company = netBio.company
+                )
+                continuation.resume(generalBio)
             }
 
             override fun onFailure(call: Call<NetWorkBio>, t: Throwable) {
@@ -73,22 +69,14 @@ constructor(
                 call: Call<List<NetWorkBio>>,
                 response: Response<List<NetWorkBio>>
             ) {
-                val netListFollowers = response.body()
+                val netListFollowers = response.body() ?: return continuation.resumeWithException(Resources.NotFoundException("${response.errorBody()?.string()}"))
 
-                if (netListFollowers != null) {
+                val listFollowers = netListFollowers.asSequence()
+                    .map { bio ->
+                        FollowersFollowing(bio.login, bio.avatar_url)
+                    }.toList()
 
-                    val listFollowers = netListFollowers.asSequence()
-                        .map { nonNullBio ->
-                            FollowersFollowing(
-                                followUsername = nonNullBio.login,
-                                avatarUrl = nonNullBio.avatar_url
-                                )
-                        }.toList()
-
-                    continuation.resume(listFollowers)
-                } else {
-                    continuation.resumeWithException(Resources.NotFoundException("${response.errorBody()?.string()}"))
-                }
+                continuation.resume(listFollowers)
             }
 
             override fun onFailure(call: Call<List<NetWorkBio>>, t: Throwable) {
@@ -108,23 +96,14 @@ constructor(
                 call: Call<List<NetWorkBio>>,
                 response: Response<List<NetWorkBio>>
             ) {
-                val netListFollowers = response.body()
+                val netListFollowers = response.body() ?: return  continuation.resumeWithException(Resources.NotFoundException(("${response.errorBody()?.string()}")))
 
-                if (netListFollowers != null) {
+                val listFollowers =  netListFollowers.asSequence()
+                    .map { nonNullBio ->
+                        FollowersFollowing( nonNullBio.login, nonNullBio.avatar_url)
+                    }.toList()
 
-                    val listFollowers =  netListFollowers.asSequence()
-                        .map { nonNullBio ->
-                            FollowersFollowing(
-                                followUsername = nonNullBio.login,
-                                avatarUrl = nonNullBio.avatar_url
-                            )
-                        }.toList()
-
-                    continuation.resume(listFollowers)
-
-                } else {
-                    continuation.resumeWithException(Resources.NotFoundException(("${response.errorBody()?.string()}")))
-                }
+                continuation.resume(listFollowers)
             }
 
             override fun onFailure(call: Call<List<NetWorkBio>>, t: Throwable) {

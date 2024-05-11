@@ -28,7 +28,7 @@ class DetailActivity : AppCompatActivity() {
 
     private val detailViewModel : DetailViewModel by viewModels ()
 
-    private lateinit var skeleton : Skeleton
+    private val skeleton : Skeleton by lazy { binding.root.createSkeleton() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,17 +40,10 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.title = bio?.username ?: getString(R.string.detail_user)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        detailViewModel.getDetailBioLiveData.observe(this, { resBio ->
+        detailViewModel.getDetailBioLiveData.observe(this) { resBio ->
             when (resBio) {
-                is Resource.Loading -> {
-                    if (::skeleton.isInitialized) {
-                        skeleton.showSkeleton()
-                    } else {
-                        skeleton = binding.root.createSkeleton().apply {
-                            showSkeleton()
-                        }
-                    }
-                }
+                is Resource.Loading -> skeleton.showSkeleton()
+
                 is Resource.Success -> {
                     lifecycleScope.launch {
                         delay(500)
@@ -60,16 +53,15 @@ class DetailActivity : AppCompatActivity() {
                         invalidateOptionsMenu()
                     }
                 }
+
                 is Resource.Error -> {
                     skeleton.showOriginal()
                     toast(resBio.exceptionMessage.toString())
                 }
             }
-        })
+        }
 
-        detailViewModel.isUserFavLiveData().observe(this, {
-                invalidateOptionsMenu()
-        })
+        detailViewModel.isUserFavLiveData().observe(this) { invalidateOptionsMenu() }
     }
 
     private fun bindLayout(generalBio: GeneralBio) {

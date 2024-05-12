@@ -38,29 +38,25 @@ constructor(
       client.enqueue(object : Callback<NetWorkUsers> {
          override fun onResponse(call: Call<NetWorkUsers>, response: Response<NetWorkUsers>) {
 
-            val listNetBio = response.body()?.listNetWorkBio
+            val listNetBio = response.body()?.listNetWorkBio ?: return continuation.resumeWithException(Throwable("response.body is null, ${response.message()}"))
 
-            if (listNetBio != null) {
-               val listGeneralBio = listNetBio.asSequence().map { nonNullableBio ->
-                  GeneralBio(
-                     username = nonNullableBio.login,
-                     followersUrl = nonNullableBio.followers_url,
-                     followingUrl = nonNullableBio.following_url,
-                     avatar =  nonNullableBio.avatar_url,
-                     name = nonNullableBio.name,
-                     location = nonNullableBio.location,
-                     repoCount = nonNullableBio.public_repos,
-                     followingCount = nonNullableBio.following,
-                     followerCount = nonNullableBio.followers,
-                     company = nonNullableBio.company
-                  )
-               }.toList()
+            val listGeneralBio = listNetBio.asSequence().map { nonNullableBio ->
+               GeneralBio(
+                  username = nonNullableBio.login,
+                  followersUrl = nonNullableBio.followers_url,
+                  followingUrl = nonNullableBio.following_url,
+                  avatar =  nonNullableBio.avatar_url,
+                  name = nonNullableBio.name,
+                  location = nonNullableBio.location,
+                  repoCount = nonNullableBio.public_repos,
+                  followingCount = nonNullableBio.following,
+                  followerCount = nonNullableBio.followers,
+                  company = nonNullableBio.company
+               )
+            }.toList()
 
-               continuation.resume(listGeneralBio)
+            continuation.resume(listGeneralBio)
 
-            } else {
-               continuation.resumeWithException(Throwable("response.body is null, ${response.message()}"))
-            }
          }
          override fun onFailure(call: Call<NetWorkUsers>, t: Throwable) {
             continuation.resumeWithException(t)

@@ -2,15 +2,30 @@
     <!-- Base application theme. -->
     <style name="Theme.GithubUser" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimary">#a1d39a</item>
+        <item name="colorPrimaryVariant">#a1d39a</item>
+        <item name="colorOnPrimary">#0a390f</item>
+        <item name="colorPrimaryContainer">#235024</item>
+        <item name="colorOnPrimaryContainer">#bcf0b4</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorSecondary">#baccb3</item>
+        <item name="colorSecondaryVariant">#baccb3</item>
         <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondaryContainer">#3b4b38</item>
+        <item name="colorOnSecondaryContainer">#d5e8cf</item>
+
+        <!-- tertiary brand color. -->
+        <item name="colorTertiary">#a0cfd4</item>
+        <item name="colorOnTertiary">#00363b</item>
+        <item name="colorTertiaryContainer">#1f4d52</item>
+        <item name="colorOnTertiaryContainer">#bcebf0</item>
+
+
+        <item name="colorSurface">#10140f</item>
+        <item name="colorOnSurface">#e0e4db</item>
+
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorSurface</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

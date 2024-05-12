@@ -3,6 +3,7 @@ package com.daya.githubuser.presentation.detail
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.addCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -19,7 +20,6 @@ import com.faltenreich.skeletonlayout.createSkeleton
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.util.*
 
 @AndroidEntryPoint
 class DetailActivity : AppCompatActivity() {
@@ -28,29 +28,22 @@ class DetailActivity : AppCompatActivity() {
 
     private val detailViewModel : DetailViewModel by viewModels ()
 
-    private lateinit var skeleton : Skeleton
+    private val skeleton : Skeleton by lazy { binding.root.createSkeleton() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        onBackPressedDispatcher.addCallback(this){ finish() }
         val bio = intent.getParcelableExtra<GeneralBio>(KEY_USER_EXTRA)
-        detailViewModel.sculptingBio(bio)
+        detailViewModel.setBio(bio)
 
         supportActionBar?.title = bio?.username ?: getString(R.string.detail_user)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        detailViewModel.getDetailBioLiveData.observe(this, { resBio ->
+        detailViewModel.getDetailBioLiveData.observe(this) { resBio ->
             when (resBio) {
-                is Resource.Loading -> {
-                    if (::skeleton.isInitialized) {
-                        skeleton.showSkeleton()
-                    } else {
-                        skeleton = binding.root.createSkeleton().apply {
-                            showSkeleton()
-                        }
-                    }
-                }
+                is Resource.Loading -> skeleton.showSkeleton()
                 is Resource.Success -> {
                     lifecycleScope.launch {
                         delay(500)
@@ -60,16 +53,15 @@ class DetailActivity : AppCompatActivity() {
                         invalidateOptionsMenu()
                     }
                 }
+
                 is Resource.Error -> {
                     skeleton.showOriginal()
                     toast(resBio.exceptionMessage.toString())
                 }
             }
-        })
+        }
 
-        detailViewModel.isUserFavLiveData().observe(this, {
-                invalidateOptionsMenu()
-        })
+        detailViewModel.isUserFavLiveData().observe(this) { invalidateOptionsMenu() }
     }
 
     private fun bindLayout(generalBio: GeneralBio) {
@@ -108,7 +100,7 @@ class DetailActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                onBackPressed()
+                onBackPressedDispatcher.onBackPressed()
                 true
             }
             R.id.detail_add_favorite -> {
@@ -121,10 +113,6 @@ class DetailActivity : AppCompatActivity() {
             }
             else ->super.onOptionsItemSelected(item)
         }
-    }
-
-    override fun onBackPressed() {
-        finish()
     }
 
     companion object{

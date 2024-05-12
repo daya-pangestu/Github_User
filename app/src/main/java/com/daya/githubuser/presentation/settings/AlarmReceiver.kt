@@ -68,12 +68,14 @@ class AlarmReceiver  : BroadcastReceiver() {
             }
 
             val pendingIntent = buildOrGetPendingIntent(context,intent,flags = 0)
-            alarmManager?.setInexactRepeating(
-                AlarmManager.RTC_WAKEUP,
-                calendar.timeInMillis,
-                AlarmManager.INTERVAL_DAY,
-                pendingIntent
-            )
+            if (pendingIntent != null) {
+                alarmManager?.setInexactRepeating(
+                    AlarmManager.RTC_WAKEUP,
+                    calendar.timeInMillis,
+                    AlarmManager.INTERVAL_DAY,
+                    pendingIntent
+                )
+            }
         }
 
          fun isAlarmSet(context: Context): Boolean {
@@ -107,7 +109,7 @@ class AlarmReceiver  : BroadcastReceiver() {
             return Intent(context, AlarmReceiver::class.java)
         }
 
-        private fun buildOrGetPendingIntent(context: Context?,intent: Intent?,flags : Int = PendingIntent.FLAG_NO_CREATE ): PendingIntent? {
+        private fun buildOrGetPendingIntent(context: Context?,intent: Intent,flags : Int = PendingIntent.FLAG_NO_CREATE or PendingIntent.FLAG_IMMUTABLE ): PendingIntent? {
             return PendingIntent.getBroadcast(context, ID_REPEATING,intent,flags)
         }
     }

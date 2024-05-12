@@ -8,17 +8,17 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.daya.githubuser.R
 import com.daya.core.domain.model.GeneralBio
-import com.daya.githubuser.databinding.ItemUserBinding
 import com.daya.core.utils.avatarForMainApp
 import com.daya.core.utils.isValidUrl
 import com.daya.core.utils.trimLocationName
+import com.daya.githubuser.R
+import com.daya.githubuser.favorite.databinding.ItemUserFavoriteBinding
 
 open class UserProfileAdapter(private val itemClick : (GeneralBio) -> Unit) : ListAdapter<GeneralBio, UserProfileAdapter.UserProfileViewHolder>(userBioDiffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserProfileViewHolder {
-        val binding = ItemUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemUserFavoriteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return UserProfileViewHolder(binding,itemClick)
 
     }
@@ -29,7 +29,7 @@ open class UserProfileAdapter(private val itemClick : (GeneralBio) -> Unit) : Li
     }
 
     inner class UserProfileViewHolder(
-        private val binding: ItemUserBinding,
+        private val binding: ItemUserFavoriteBinding,
         itemClick: (GeneralBio) -> Unit
     ) :
         RecyclerView.ViewHolder(binding.root) {

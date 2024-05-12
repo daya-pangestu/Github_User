@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.daya.core.data.Resource
 import com.daya.core.di.dfm.FavoriteModuleDependencies
 import com.daya.core.utils.toast
-import com.daya.githubuser.R
+import com.daya.githubuser.favorite.R
 import com.daya.githubuser.favorite.databinding.ActivityFavoriteBinding
 import com.daya.githubuser.favorite.di.DaggerFavoriteComponent
 import com.daya.githubuser.favorite.presentation.factory.ViewModelFactory
@@ -29,7 +29,7 @@ class FavoriteActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityFavoriteBinding
 
-    private val skeleton : Skeleton by lazy { binding.rvUsersFav.applySkeleton(R.layout.item_user) }
+    private val skeleton : Skeleton by lazy { binding.rvUsersFav.applySkeleton(R.layout.item_user_favorite) }
 
     @Inject
     lateinit var factory : ViewModelFactory
@@ -55,7 +55,7 @@ class FavoriteActivity : AppCompatActivity() {
 
         supportActionBar?.apply{
             setDisplayHomeAsUpEnabled(true)
-            title = getString(R.string.favorite)
+            title = getString(com.daya.githubuser.R.string.favorite)
         }
 
         val userAdapter = UserProfileAdapter {bio ->

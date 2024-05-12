@@ -4,8 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
-    tools:context=".presentation.detail.DetailActivity">
+    android:background="?colorSurface"
+    android:padding="16dp"
+    tools:context=".presentation.detail.DetailActivity"
+    >
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
@@ -14,7 +16,6 @@
         android:layout_marginTop="16dp"
         app:civ_border_color="?attr/colorOnSecondary"
         app:civ_border_width="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
@@ -23,46 +24,40 @@
         android:id="@+id/tv_user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
+        android:layout_marginStart="8dp"
         android:maxLines="1"
         android:textAllCaps="true"
         android:textColor="?attr/colorSecondaryVariant"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tv_name"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.05"
-        app:layout_constraintTop_toBottomOf="@+id/profile_image"
-        tools:text="@tools:sample/first_names" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/profile_image"
+        app:layout_constraintTop_toTopOf="@+id/profile_image"
+        tools:text="@tools:sample/first_names"
+        app:layout_constraintHorizontal_bias="0"
+        />
 
     <TextView
         android:id="@+id/tv_name"
         style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="4dp"
         android:ellipsize="end"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_user_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_user_name"
-        app:layout_constraintTop_toTopOf="@+id/tv_user_name"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/tv_user_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_user_name"
         tools:text="@tools:sample/first_names" />
 
     <TextView
         android:id="@+id/tv_followers_count"
-        android:layout_width="135dp"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="180dp"
         android:gravity="center"
-        android:textColor="?attr/colorOnSecondary"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="22sp"
-        app:layout_constraintEnd_toStartOf="@+id/tv_following_count"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_company"
         tools:text="45" />
@@ -82,10 +77,11 @@
 
     <TextView
         android:id="@+id/tv_following_count"
-        android:layout_width="136dp"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
         android:gravity="center"
-        android:textColor="?attr/colorOnSecondary"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_followers_count"
         app:layout_constraintEnd_toStartOf="@+id/tv_repo_count"
@@ -109,15 +105,13 @@
 
     <TextView
         android:id="@+id/tv_repo_count"
-        android:layout_width="136dp"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textColor="?attr/colorOnSecondary"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_followers_count"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_following_count"
         app:layout_constraintTop_toTopOf="@+id/tv_followers_count"
         tools:text="300" />
 
@@ -136,12 +130,14 @@
         android:id="@+id/tv_company"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
         android:gravity="center"
-        android:textColor="?attr/colorOnSecondary"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_user_name"
+        android:minWidth="60dp"
+        android:minHeight="20dp"
+        app:layout_constraintVertical_bias="1"
+        android:textColor="?attr/colorOnSurface"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+        app:layout_constraintStart_toStartOf="@+id/tv_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name"
         tools:text="company name" />
 
     <View
@@ -160,7 +156,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:gravity="center"
+        android:minWidth="60dp"
+        app:layout_constraintHorizontal_bias="0"
+        android:minHeight="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_company"
+        app:layout_constraintEnd_toEndOf="@+id/tv_user_name"
         app:layout_constraintStart_toEndOf="@+id/div"
         app:layout_constraintTop_toTopOf="@+id/tv_company"
         app:layout_constraintVertical_bias="0.0"

@@ -15,18 +15,6 @@ class FollowerFollowingFragment : Fragment() {
     private val binding get() = _binding!!
 
     companion object{
-        fun newInstance(followerUrl: String? = null, followingUrl: String? = null, listFollow: List<FollowersFollowing>): FollowerFollowingFragment {
-            val args = Bundle()
-            args.putString(KEY_EXTRA_FOLLOWERS, followerUrl)
-            args.putString(KEY_EXTRA_FOLLOWING,followingUrl)
-            args.putParcelableArrayList(KEY_EXTRA_LIST_FOLLOW, ArrayList(listFollow))
-            val fragment = FollowerFollowingFragment()
-            fragment.arguments = args
-            return fragment
-        }
-
-        private const val KEY_EXTRA_FOLLOWERS = "key_extra_followers"
-        private const val KEY_EXTRA_FOLLOWING = "key_extra_following"
         const val KEY_EXTRA_LIST_FOLLOW = "key_extra_list_follow"
     }
 

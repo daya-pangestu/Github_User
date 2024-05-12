@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.daya.core.data.Resource
 import com.daya.core.di.dfm.FavoriteModuleDependencies
+import com.daya.core.utils.toast
 import com.daya.githubuser.R
 import com.daya.githubuser.favorite.databinding.ActivityFavoriteBinding
 import com.daya.githubuser.favorite.di.DaggerFavoriteComponent
@@ -28,7 +29,7 @@ class FavoriteActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityFavoriteBinding
 
-    private lateinit var skeleton : Skeleton
+    private val skeleton : Skeleton by lazy { binding.rvUsersFav.applySkeleton(R.layout.item_user) }
 
     @Inject
     lateinit var factory : ViewModelFactory
@@ -78,27 +79,19 @@ class FavoriteActivity : AppCompatActivity() {
 
         favoriteViewModel.getListFavoriteLiveData.observe(this) {
             when (it) {
-                is Resource.Loading -> {
-                    if (::skeleton.isInitialized) {
-                        skeleton.showSkeleton()
-                    } else {
-                        skeleton = binding.rvUsersFav.applySkeleton(R.layout.item_user).apply {
-                            showSkeleton()
-                        }
-                    }
-                }
+                is Resource.Loading -> skeleton.showSkeleton()
 
                 is Resource.Success -> {
                     lifecycleScope.launch {
                         delay(500)
-                        if (::skeleton.isInitialized) skeleton.showOriginal()
+                        skeleton.showOriginal()
                         userAdapter.submitList(it.data)
                     }
                 }
 
                 is Resource.Error -> {
-                    if (::skeleton.isInitialized) skeleton.showOriginal()
-                    Toast.makeText(this, it.exceptionMessage.toString(), Toast.LENGTH_SHORT).show()
+                    skeleton.showOriginal()
+                    toast(it.exceptionMessage.toString(), Toast.LENGTH_SHORT)
                 }
             }
         }
@@ -108,7 +101,6 @@ class FavoriteActivity : AppCompatActivity() {
         return when (item.itemId) {
             android.R.id.home -> {
                 onBackPressedDispatcher.onBackPressed()
-
                 true
             }
             else ->super.onOptionsItemSelected(item)

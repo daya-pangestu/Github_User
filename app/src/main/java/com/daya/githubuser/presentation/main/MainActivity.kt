@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private val mainViewModel by viewModels<MainViewModel>()
-    private lateinit var skeleton : Skeleton
+    private val skeleton : Skeleton by lazy { binding.rvUsers.applySkeleton(R.layout.item_user, 10) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,9 +38,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val userAdapter = UserProfileAdapter{ bio ->
-            val intentToDetail = Intent(this, DetailActivity::class.java).also {
-                it.putExtra(DetailActivity.KEY_USER_EXTRA, bio)
-            }
+            val intentToDetail = Intent(this, DetailActivity::class.java)
+            intentToDetail.putExtra(DetailActivity.KEY_USER_EXTRA, bio)
             startActivity(intentToDetail)
         }
 
@@ -69,26 +68,18 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModel.getListBioLiveData.observe(this) {
             when (it) {
-                is Resource.Loading -> {
-                    if (::skeleton.isInitialized) {
-                        skeleton.showSkeleton()
-                    } else {
-                        skeleton = binding.rvUsers.applySkeleton(R.layout.item_user, 10).apply {
-                            showSkeleton()
-                        }
-                    }
-                }
+                is Resource.Loading -> skeleton.showSkeleton()
 
                 is Resource.Success -> {
                     lifecycleScope.launch {
                         delay(500)
-                        if (::skeleton.isInitialized) skeleton.showOriginal()
+                        skeleton.showOriginal()
                         userAdapter.submitList(it.data)
                     }
                 }
 
                 is Resource.Error -> {
-                    if (::skeleton.isInitialized) skeleton.showOriginal()
+                    skeleton.showOriginal()
                     toast(it.exceptionMessage.toString())
                 }
             }
@@ -109,7 +100,6 @@ class MainActivity : AppCompatActivity() {
             R.id.main_menu_search -> {
                 val intentToSearch = Intent(this, SearchActivity::class.java)
                 startActivity(intentToSearch)
-
                 true
             }
             R.id.main_menu_settings -> {

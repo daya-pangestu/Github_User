@@ -34,11 +34,9 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        onBackPressedDispatcher.addCallback(this){
-            finish()
-        }
+        onBackPressedDispatcher.addCallback(this){ finish() }
         val bio = intent.getParcelableExtra<GeneralBio>(KEY_USER_EXTRA)
-        detailViewModel.sculptingBio(bio)
+        detailViewModel.setBio(bio)
 
         supportActionBar?.title = bio?.username ?: getString(R.string.detail_user)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -46,7 +44,6 @@ class DetailActivity : AppCompatActivity() {
         detailViewModel.getDetailBioLiveData.observe(this) { resBio ->
             when (resBio) {
                 is Resource.Loading -> skeleton.showSkeleton()
-
                 is Resource.Success -> {
                     lifecycleScope.launch {
                         delay(500)

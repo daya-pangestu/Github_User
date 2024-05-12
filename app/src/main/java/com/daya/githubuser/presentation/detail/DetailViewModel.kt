@@ -6,7 +6,6 @@ import com.daya.core.domain.model.GeneralBio
 import com.daya.core.domain.usecase.detail.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -24,7 +23,7 @@ private val getCurrentDetailFavoriteUserUseCase: GetCurrentDetailFavoriteUserUse
 
     private val _bioLiveData = MutableLiveData<GeneralBio>()
 
-    fun sculptingBio(bio: GeneralBio?) {
+    fun setBio(bio: GeneralBio?) {
             _bioLiveData.value = bio!! //guaranteed to be NonNull
     }
 

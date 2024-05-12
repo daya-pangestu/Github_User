@@ -14,14 +14,9 @@ constructor(
     private val getListFavoriteUseCase: GetListFavoriteUseCase
 ) : ViewModel() {
 
-    private val _getListFavoriteLiveData = liveData<Resource<List<GeneralBio>>> {
-        if (latestValue == null) {
+    private val _getListFavoriteLiveData = liveData {
             emit(Resource.Loading)
             emitSource(getListFavoriteUseCase(Unit).asLiveData())
-            return@liveData
-        } else {
-            emit(latestValue!!)
-        }
     }
 
     val getListFavoriteLiveData = _getListFavoriteLiveData

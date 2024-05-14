@@ -4,6 +4,8 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.commit
+import androidx.fragment.app.transaction
 import androidx.preference.PreferenceFragmentCompat
 import com.daya.githubuser.R
 
@@ -14,9 +16,9 @@ class SettingsActivity : AppCompatActivity() {
         setContentView(R.layout.settings_activity)
         if (savedInstanceState == null) {
             supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.settings, SettingsFragment())
-                .commit()
+                .commit {
+                    replace(R.id.settings, SettingsFragment())
+                }
         }
         supportActionBar?.apply{
             setDisplayHomeAsUpEnabled(true)

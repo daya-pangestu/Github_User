@@ -2,9 +2,7 @@ package com.daya.core.data.profile.datasource
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.daya.core.data.profile.network.NetWorkUsers
-import com.daya.core.di.detail.NetWorkDetailBio
 import com.daya.core.faker.FakeDataClasses
-import com.google.common.truth.Truth
 import com.google.common.truth.Truth.assertThat
 import com.squareup.moshi.Moshi
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -13,10 +11,9 @@ import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
-import org.junit.Test
-
 import org.junit.Before
 import org.junit.Rule
+import org.junit.Test
 import org.junit.runner.RunWith
 import javax.inject.Inject
 

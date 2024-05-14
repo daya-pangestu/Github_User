@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
 import com.daya.core.data.Resource
-import com.daya.core.domain.model.GeneralBio
 import com.daya.core.domain.usecase.profile.GetListFavoriteUseCase
 import javax.inject.Inject
 

@@ -27,7 +27,6 @@ private val getCurrentDetailFavoriteUserUseCase: GetCurrentDetailFavoriteUserUse
             _bioLiveData.value = bio!! //guaranteed to be NonNull
     }
 
-    @Suppress("UNCHECKED_CAST")
     val getDetailBioLiveData = _bioLiveData.switchMap { bio ->
         liveData {
             emit(Resource.Loading)

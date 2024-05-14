@@ -32,7 +32,7 @@ class ProfileRepositoryTest {
         followers = emptyList()
     )
 
-    lateinit var profileRepository: IProfileRepository
+    private lateinit var profileRepository: IProfileRepository
 
     @Before
     fun setUp() {
@@ -115,7 +115,6 @@ class ProfileRepositoryTest {
         }
     }
 
-    @OptIn(ExperimentalTime::class)
     @Test
     fun `verify profileDao#getFavoriteUserBioWithFollowersFollowing get called`() {
         runBlocking {

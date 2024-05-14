@@ -1,8 +1,8 @@
 package com.daya.githubuser.presentation.main
 
-import androidx.lifecycle.*
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import com.daya.core.data.Resource
-import com.daya.core.domain.model.GeneralBio
 import com.daya.core.domain.usecase.profile.GetListBioUseCase
 import com.daya.core.domain.usecase.profile.GetListFavoriteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

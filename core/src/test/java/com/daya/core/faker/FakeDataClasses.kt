@@ -4,7 +4,6 @@ import com.daya.core.data.di.bio.BioEntity
 import com.daya.core.data.di.bio.BioEntityWithFollowersFollowing
 import com.daya.core.data.profile.network.NetWorkBio
 import com.daya.core.data.profile.network.NetWorkUsers
-import com.daya.core.domain.model.FollowersFollowing
 import com.daya.core.domain.model.GeneralBio
 import com.daya.core.faker.KotlinFaker.faker
 import com.daya.core.faker.KotlinFaker.randomNumber

@@ -62,7 +62,7 @@ dependencies {
     //preference
     api 'androidx.preference:preference-ktx:1.2.1'
 
-    //SQLChiper
+    //SQLCipher
     implementation "net.zetetic:android-database-sqlcipher:4.4.2"
     implementation "androidx.sqlite:sqlite-ktx:2.4.0"
 

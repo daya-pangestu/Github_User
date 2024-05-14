@@ -14,8 +14,8 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class LocalListBioDataSourceTest {
 
-    val context = ApplicationProvider.getApplicationContext<Context>()
-    val moshi = Moshi.Builder().build()
+    private val context: Context = ApplicationProvider.getApplicationContext<Context>()
+    private val moshi: Moshi = Moshi.Builder().build()
 
     lateinit var localListBioDataSource: LocalListBioDataSource
 

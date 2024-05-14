@@ -11,9 +11,9 @@ import org.mockito.kotlin.whenever
 
 class LocalDetailFavoriteDataSourceTest  {
 
-    val profileDao: ProfileDao = mock()
+    private val profileDao: ProfileDao = mock()
 
-    lateinit var localDetailFavoriteDataSource: LocalDetailFavoriteDataSource
+    private lateinit var localDetailFavoriteDataSource: LocalDetailFavoriteDataSource
 
     @Before
     fun setUp() {

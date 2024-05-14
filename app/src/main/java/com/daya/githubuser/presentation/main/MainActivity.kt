@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.*
+import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import com.daya.core.data.Resource
 import com.daya.core.utils.toast
 import com.daya.githubuser.R
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                 )
             )
 
-            rvUsers.addOnScrollListener(object :RecyclerView.OnScrollListener(){
+            rvUsers.addOnScrollListener(object : OnScrollListener(){
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
                     if (dy > 0) { // Scrolling up
